@@ -10,9 +10,22 @@ React
 
 import { API } from 'aws-amplify';
 
-import { List } from 'antd';
+import {
+      List
+    , Input
+    , Button}
+  from 'antd';
+
 import 'antd/dist/antd.css';
+
 import { listNotes } from './graphql/queries';
+
+import { v4 as uuid } from 'uuid';
+
+import { createNote as CreateNote } from './graphql/mutations';
+
+const CLIENT_ID = uuid();
+
 
 const initialState = {
   notes: []
@@ -42,11 +55,37 @@ const reducer = (state, action) => {
     };
     break;
 
+    case 'ADD_NOTE':
+      return { ...state
+        , notes: [
+          action.note
+          , ...state.notes
+        ]
+      };
+
+
+    case 'RESET_FORM':
+      return {
+        ...state
+        , form: initialState.form
+      };
+
+
+    case 'SET_INPUT':
+      return {
+        ...state
+        , form: {
+          ...state.form
+          , [action.name]: action.value
+         }
+       };
+
+
     default:
     return {
       ...state
     };
-    break;
+
   }
 };
 
@@ -84,6 +123,63 @@ const styles = {
 }
 
 
+const createNote = async () => {
+  //Destructuring
+const { form } = state;
+
+//Lame form validation but good enough
+if (!form.name || !form.description) {
+   return alert('please enter a name and description');
+}
+
+
+const note = {
+    ...form
+    , clientId: CLIENT_ID
+    , completed: false
+    , id: uuid()
+  };
+
+
+//optimistic dispatch, updates local app state before calling GraphQl endpoint
+dispatch({
+  type: 'ADD_NOTE'
+
+  //shorthand syntax for note: no
+  , note
+});
+
+
+dispatch({
+  type: 'RESET_FORM'
+});
+
+
+  try {
+  await API.graphql({
+      query: CreateNote
+      ,variables: {
+        input: note
+       }
+    });
+
+    console.log('successfully created note!')
+  } catch (err) {
+    console.log("error: ", err);
+  }
+};
+
+const onChange = (e)  => {
+  dispatch({
+    type: 'SET_INPUT'
+    , name: e.target.name
+    , value: e.target.value
+  });
+};
+
+
+
+
 const renderItem = (item) => {
   return (
     <List.Item style={styles.item}>
@@ -97,6 +193,29 @@ const renderItem = (item) => {
 
   return (
     <div style={styles.container}>
+
+  <Input
+    onChange={onChange}
+    value={state.form.name}
+    placeholder="Enter Note Name"
+    name='name'
+    style={styles.input}
+  />
+  <Input
+    onChange={onChange}
+    value={state.form.description}
+    placeholder="Enter description"
+    name='description'
+    style={styles.input}
+  />
+  <Button
+    onClick={createNote}
+    type="primary"
+    >
+    Create Note
+    </Button>
+
+
    <List
      loading={state.loading}
      dataSource={state.notes}

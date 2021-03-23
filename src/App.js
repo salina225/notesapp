@@ -58,8 +58,9 @@ const reducer = (state, action) => {
     case 'ADD_NOTE':
       return { ...state
         , notes: [
-          action.note
-          , ...state.notes
+
+        ...state.notes
+        , action.note
         ]
       };
 

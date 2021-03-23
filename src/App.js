@@ -119,8 +119,11 @@ useEffect(
 
 const styles = {
   container: {padding: 20},
+
   input: {marginBottom: 10},
+
   item: { textAlign: 'left' },
+  
   p: { color: '#1890ff' }
 }
 

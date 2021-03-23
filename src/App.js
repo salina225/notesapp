@@ -100,7 +100,8 @@ const fetchNotes = async () => {
       query: listNotes
     });
 
-    dispatch({ type: 'SET_NOTES', notes: notesData.data.listNotes.items })
+    dispatch({ type: 'SET_NOTES', notes: notesData.data.listNotes.items.sort((a, b) => a.name >= b.name ? 1 : -1 )
+   })
   }
   catch (err) {
     console.error(err)

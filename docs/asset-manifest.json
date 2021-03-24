@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/salina225/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/salina225/static/js/main.48766d4f.chunk.js",
+    "main.js.map": "/salina225/static/js/main.48766d4f.chunk.js.map",
+    "runtime-main.js": "/salina225/static/js/runtime-main.2253f18d.js",
+    "runtime-main.js.map": "/salina225/static/js/runtime-main.2253f18d.js.map",
+    "static/css/2.fc2db407.chunk.css": "/salina225/static/css/2.fc2db407.chunk.css",
+    "static/js/2.20cee958.chunk.js": "/salina225/static/js/2.20cee958.chunk.js",
+    "static/js/2.20cee958.chunk.js.map": "/salina225/static/js/2.20cee958.chunk.js.map",
+    "static/js/3.ac410d40.chunk.js": "/salina225/static/js/3.ac410d40.chunk.js",
+    "static/js/3.ac410d40.chunk.js.map": "/salina225/static/js/3.ac410d40.chunk.js.map",
+    "index.html": "/salina225/index.html",
+    "static/css/2.fc2db407.chunk.css.map": "/salina225/static/css/2.fc2db407.chunk.css.map",
+    "static/css/main.8c8b27cf.chunk.css.map": "/salina225/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.20cee958.chunk.js.LICENSE.txt": "/salina225/static/js/2.20cee958.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/salina225/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2253f18d.js",
+    "static/css/2.fc2db407.chunk.css",
+    "static/js/2.20cee958.chunk.js",
+    "static/css/main.8c8b27cf.chunk.css",
+    "static/js/main.48766d4f.chunk.js"
+  ]
+}
